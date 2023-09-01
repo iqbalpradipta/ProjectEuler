@@ -2,19 +2,39 @@ package main
 
 import "fmt"
 
-func primeNumbers(l int) []int {
-	var num int
-	primeNumber100LEGITItsPrimeNumberAfterMuchResearch := []int{2,3,5,7}
-	for i := 2; i <= l; i++ {
-		if i % 2 != 0 && i % 3 != 0 && i % 5 != 0 && i % 7 != 0{
-			num = i
-			primeNumber100LEGITItsPrimeNumberAfterMuchResearch = append(primeNumber100LEGITItsPrimeNumberAfterMuchResearch, num)
+func primeNumbers(num int) bool {
+	if num <= 1 {
+		return false
+	}
+	for i := 2; i*i <= num; i ++ {
+		if num % i == 0{
+			return false
 		}
 	}
-	return primeNumber100LEGITItsPrimeNumberAfterMuchResearch
+	return true
 }
 
+func findPrime(n int) int {
+	if n <= 0 {
+		return 0
+	}
+
+	c := 0
+	num := 2
+
+	for{
+		if primeNumbers(num) {
+			c++
+		}
+		if c == n {
+			return num
+		}
+		num++
+	}
+}
+
+
 func main()  {
-	prime := 10001
-	fmt.Println(primeNumbers(prime))
+	n := 10001
+	fmt.Println(findPrime(n))
 }
